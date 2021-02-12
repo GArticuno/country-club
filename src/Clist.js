@@ -100,36 +100,38 @@ class App extends Component{
         </section>
         <Query query={GET_C}>
           {({ loading, error, data }) => {
-            if (loading) return <div></div>;
-            if (error) return <div>Error :(</div>;
-              var paises= Object.values(data.Country);
-              for(var i=0;i<paises.length;i++){
-                if(paises[i].subregion ===null){
-                  paises[i].subregion={name: "ZZNot_ExistZZ"}
-                }
-                if(paises[i].capital ===''){
-                  paises[i].capital="ZZNot_ExistZZ"
-                }
-                if(paises[i].area ===null){
-                  paises[i].area=0
-                }
-                if(paises[i].population ===null){
-                  paises[i].population=0
-                }
+            if (loading)
+              return <div>Carregando...</div>;
+            if (error)
+              return <div>Error :(</div>;
+            var paises = Object.values(data.Country);
+            for (var i = 0; i < paises.length; i++) {
+              if (paises[i].subregion === null) {
+                paises[i].subregion = { name: "ZZNot_ExistZZ" };
               }
-              paises[8].subregion.name= "ZZNot_ExistZZ"
-             return(
-              paises.sort(compare).map((pais) =>(  
+              if (paises[i].capital === '') {
+                paises[i].capital = "ZZNot_ExistZZ";
+              }
+              if (paises[i].area === null) {
+                paises[i].area = 0;
+              }
+              if (paises[i].population === null) {
+                paises[i].population = 0;
+              }
+            }
+            paises[8].subregion.name = "ZZNot_ExistZZ";
+            return (
+              paises.sort(compare).map((pais) => (
                 <section id="lista" key={pais.name}>
-                  <img className="flag" src={pais.flag.svgFile}/>
+                  <img className="flag" src={pais.flag.svgFile} />
                   <div id="name" className="data">{pais.name}</div>
                   <div id="capital" className="data">{pais.capital}</div>
                   <div id="population" className="data">{pais.population}</div>
                   <div id="area" className="data">{pais.area}</div>
                   <div id="subregion" className="data">{pais.subregion.name}</div>
                 </section>))
-             )
-             }}
+            );
+          }}
         </Query>
       </>
     );
