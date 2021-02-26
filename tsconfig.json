@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/EXPLANATION_TO_USE_JS.tsx"  ]
 }
