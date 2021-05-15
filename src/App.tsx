@@ -2,7 +2,7 @@
 import React, { Component} from 'react';
 import {ApolloClient, InMemoryCache } from '@apollo/client';
 import { ApolloProvider} from '@apollo/client/react';
-import {Clist} from './CList';
+import {Clist} from './CList.js';
 
 const client = new ApolloClient({ 
   uri: 'https://countries-274616.ew.r.appspot.com/', cache: new InMemoryCache()});
