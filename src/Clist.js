@@ -13,7 +13,7 @@ const GET_C= gql`{
     flag{svgFile}
   }}`
 
-export function Clist(){
+export function CList(){
   const [tipo, setTipo]= useState();
   const [form, setForm]= useState();
 
