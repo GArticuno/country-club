@@ -219,8 +219,9 @@ export default function CountryList({countries}: Countries) {
           <button 
             type='button'
             onClick={ModalClose}
+            aria-label='Close'
           >
-            <IoMdClose/>
+            <IoMdClose aria-hidden="true"/>
           </button>
         </div>
       </Overlay>
@@ -239,8 +240,9 @@ export default function CountryList({countries}: Countries) {
         <button
           type='button'
           onClick={searchFilter}
+          aria-label='Search'
         >
-        <IoMdSearch className='icon'/>
+        <IoMdSearch aria-hidden='true' className='icon'/>
         </button>
       </SearchBar>
       <Grid>
