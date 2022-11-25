@@ -1,10 +1,4 @@
-import {ReactNode} from 'react'
-
-export interface ChildrenProps {
-  children: ReactNode;
-}
-
-export interface Country {
+export type CountryProps = {
   code: string;
   name: string;
   native: string;
@@ -12,9 +6,9 @@ export interface Country {
   currency: string;
   continent:{
     name: string;
-  }
-}
-
-export interface Countries {
-  countries : Country[];
-}
+  };
+  flag?: string;
+};
+export type ApolloDatProps = {
+  countries : CountryProps[];
+};
