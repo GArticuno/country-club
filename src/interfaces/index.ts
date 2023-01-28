@@ -7,7 +7,7 @@ export type CountryProps = {
   continent:{
     name: string;
   };
-  flag?: string;
+  flag: string;
 };
 export type ApolloDatProps = {
   countries : CountryProps[];

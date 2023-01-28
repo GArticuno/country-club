@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IoMdSearch } from 'react-icons/io';
 
@@ -14,24 +14,6 @@ export default function CountryList({ countries }: ApolloDatProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [country, setCountry]= useState({} as CountryProps);
 
-  const searchFilter = () =>{
-    const newData = countries.filter(country => {      
-      const itemData = `${country.name.toUpperCase()}`;
-      
-      const textData = filter.toUpperCase();
-        
-      return itemData.indexOf(textData) > -1;    
-    });
-    
-    setData(newData);  
-  }
-
-  function handler(event: any){
-    if(event.key == 'Enter'){
-      searchFilter();
-    }
-  }
-
   function modalOpen(country: CountryProps){
     setCountry(country)
     setIsModalOpen(true)
@@ -42,6 +24,15 @@ export default function CountryList({ countries }: ApolloDatProps) {
     setIsModalOpen(false)
   }
 
+  useEffect(() => {
+    if(filter.length === 0) {
+      setData(countries.slice(0,4))
+    } else {
+      const filtered = countries.filter(country => country.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+      setData(filtered);
+    }
+  }, [filter]);
+
   return (
     <>
       <SearchBar>
@@ -49,18 +40,10 @@ export default function CountryList({ countries }: ApolloDatProps) {
           type="text"
           onChange={event => setFilter(event.target.value)}
           placeholder={'Search here!'}
-          onKeyPress={event => handler(event)}
         />
-        <button
-          type='button'
-          onClick={searchFilter}
-          aria-label='Search'
-        >
-        <IoMdSearch aria-hidden='true' className='icon'/>
-        </button>
       </SearchBar>
       <Grid>
-        {data.map((country) => <CountryCard country={country} onClick={modalOpen} />)}
+        {data.map(country => (<CountryCard country={country} onClick={modalOpen} />))}
         {isModalOpen && <Modal country={country} onClose={modalClose} />}
       </Grid>
     </>

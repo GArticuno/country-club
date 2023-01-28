@@ -45,9 +45,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
     `,
   });
 
+  const countriesWithFlag = data.countries.map(country => {
+    return {
+      ...country,
+      flag: `https://www.sciencekids.co.nz/images/pictures/flags680/${country.name}.jpg`,
+    };
+  })
+
   return {
     props: {
-      countries: data.countries,
+      countries: countriesWithFlag,
     },
   };
 }
